@@ -2,7 +2,7 @@ from datetime import datetime
 import pytz
 
 
-def TimeNow(_tz:str='Asia/Tehran')-> tuple[int, int, int] | None:
+def TimeNow(_tz:str='Asia/Tehran')-> list[int, int, int] | None:
     
     try:
         now = datetime.now(
@@ -10,7 +10,11 @@ def TimeNow(_tz:str='Asia/Tehran')-> tuple[int, int, int] | None:
     except pytz.exceptions.UnknownTimeZoneError:
         return None
     
-    return now.hour, now.minute, now.second 
+    # Add a zero before the number - 5 -> 05
+    _temp = map(lambda n: f'0{n}' if len(str(n)) == 1  else f'{n}',
+                (now.hour, now.minute, now.second ))
+    return [t for t in _temp]
+
 
 def DateNow():
     pass
