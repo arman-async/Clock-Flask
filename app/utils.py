@@ -15,9 +15,9 @@ def TimeNow(_tz:str='Asia/Tehran')-> list[int, int, int] | None:
     _temp = map(lambda n: f'0{n}' if len(str(n)) == 1  else f'{n}',
                 (now.hour, now.minute, now.second ))
     return [t for t in _temp]
+# End Function
 
-
-
+# Build Calendar
 def DateNow(year:int=datetime.date.today().year,
         month:int= datetime.date.today().month,
         today:int=datetime.date.today().day ) -> dict[any]:
@@ -80,6 +80,7 @@ def DateNow(year:int=datetime.date.today().year,
         'month': datetime.datetime.now().strftime('%B'),
         'days': days
     }
+# End Function
 
 def GetNameDay(list_days:list[tuple[int, bool]])-> str| TypeError:
     start_index, day = 0, None
@@ -94,6 +95,8 @@ def GetNameDay(list_days:list[tuple[int, bool]])-> str| TypeError:
         start_index = end_index
 
     return calendar.day_name[day]
+# End Function
+
 
 if __name__ == '__main__':
     print(TimeNow())
