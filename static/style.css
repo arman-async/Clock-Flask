@@ -103,4 +103,5 @@ body {
   .calendar__number--current{
     background-color:  #ffffff;
     color: #1d2534;
+    border-radius: 8px;
   }
