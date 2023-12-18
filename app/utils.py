@@ -6,7 +6,7 @@ import pytz
 def TimeNow(_tz:str='Asia/Tehran')-> list[int, int, int] | None:
     
     try:
-        now = datetime.now(
+        now = datetime.datetime.now(
             tz=pytz.timezone(_tz))
     except pytz.exceptions.UnknownTimeZoneError:
         return None
@@ -81,8 +81,22 @@ def DateNow(year:int=datetime.date.today().year,
         'days': days
     }
 
+def GetNameDay(list_days:list[tuple[int, bool]])-> str| TypeError:
+    start_index, day = 0, None
 
+    for end_index in range(1, 6+1):
+        end_index = end_index * 7
+
+        _tmp = list_days[start_index:end_index]
+        for _ in _tmp:
+            if _[1]: day = _tmp.index(_)
+        
+        start_index = end_index
+
+    return calendar.day_name[day]
 
 if __name__ == '__main__':
     print(TimeNow())
     print(DateNow())
+    print(GetNameDay(DateNow()['days']))
+
