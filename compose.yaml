@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    container_name: time-flask
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    
+    ports:
+      - "80:5000"
+      - "443:5000"
+    
